@@ -1,0 +1,36 @@
+<div>
+  <!-- Navigation Bar -->
+  <app-navbar></app-navbar>
+</div>
+
+<!-- Main content of the body -->
+<div class="container">
+
+  <!-- Left Portion of the Screen -->
+  <div class="sub-container">
+    <h2>Welcome to {{title}} </h2>
+    <div class="form-group">
+      <label for=""> How many seats you want to book: </label>
+      <input type="number" ngModel name="myseatbook" #bookseats="ngModel" placeholder="Enter the seats" min="1" max="7" required>
+      <div class="alert" *ngIf="bookseats.touched && !bookseats.valid">
+        ** Please enter seats
+      </div>
+      <div class="alert" *ngIf="bookseats.value > 7 ">
+        ** Seats cannot be more than 7
+      </div><br>
+      <input type="submit" (click)="bookMySeats(bookseats.value)" class="btn btn-primary" value="Book Tickets">
+    </div>
+
+  </div>
+
+  <!-- Right Portion of the Screen -->
+  <div class="sub-container">
+    <h1>Seat Vaccancy Chart</h1>
+    <div class="coach">
+      <div class="seat" *ngFor="let item of seats">
+        <span [ngClass]="item.isbooked?'red-text':'green-text'">Seat {{ item.id }} </span>
+        <span *ngIf="item.id == 3 || item.id == 10 || item.id == 17 || item.id == 24 || item.id == 31 || item.id == 38  || item.id == 45 || item.id == 52 || item.id == 59 || item.id == 66 || item.id ==73 || item.id == 80">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+      </div>
+    </div>
+  </div>
+</div>
